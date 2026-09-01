@@ -10,5 +10,6 @@ out/
 .env.*
 web/.next/
 mobile/.expo/
+mobile/.expo-export-test/
 *.tsbuildinfo
 .metro-health-check*

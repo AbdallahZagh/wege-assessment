@@ -1,5 +1,84 @@
-@import "../../shared/theme.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Theme tokens — keep in sync with shared/theme.css */
+:root {
+  --wege-color-canvas: #fafaf8;
+  --wege-color-surface: #ffffff;
+  --wege-color-ink: #111111;
+  --wege-color-muted: #757575;
+  --wege-color-line: #e8e8e6;
+  --wege-color-sale: #b42318;
+  --wege-color-overlay: rgb(17 17 17 / 0.72);
+  --wege-color-favorite-on: #111111;
+  --wege-color-favorite-off: #ffffff;
+  --wege-color-favorite-scrim: rgb(17 17 17 / 0.4);
+  --wege-color-skeleton: #efefea;
+  --wege-color-skeleton-shine: rgb(255 255 255 / 0.6);
+  --wege-color-fallback: #f3f3f0;
+  --wege-color-card: #ffffff;
+  --wege-color-card-image: #f5f4f2;
+  --wege-font-size-header: 15px;
+  --wege-font-size-title: 22px;
+  --wege-font-size-subheader: 12px;
+  --wege-font-size-name: 13px;
+  --wege-font-size-price: 13px;
+  --wege-font-size-price-old: 13px;
+  --wege-font-size-indicator: 12px;
+  --wege-font-size-color-label: 11px;
+  --wege-line-height-tight: 1.3;
+  --wege-letter-spacing-name: 0.01em;
+  --wege-spacing-page: 16px;
+  --wege-spacing-page-lg: 24px;
+  --wege-spacing-page-y: 16px;
+  --wege-spacing-grid: 8px;
+  --wege-spacing-meta-top: 8px;
+  --wege-spacing-meta: 4px;
+  --wege-spacing-swatch: 6px;
+  --wege-spacing-favorite: 8px;
+  --wege-spacing-price-gap: 6px;
+  --wege-spacing-header-safe: 12px;
+  --wege-spacing-header-y: 16px;
+  --wege-spacing-viewer-x: 16px;
+  --wege-spacing-viewer-top: 56px;
+  --wege-spacing-viewer-bottom: 32px;
+  --wege-spacing-grid-bottom: 56px;
+  --wege-spacing-indicator-gap: 6px;
+  --wege-spacing-swipe-threshold: 48px;
+  --wege-spacing-card-pad: 12px;
+  --wege-spacing-card-gap: 8px;
+  --wege-spacing-card-favorite: 10px;
+  --wege-size-header: 56px;
+  --wege-size-swatch: 14px;
+  --wege-size-swatch-card: 18px;
+  --wege-size-swatch-viewer: 20px;
+  --wege-size-btn-favorite: 32px;
+  --wege-size-card-favorite: 34px;
+  --wege-size-btn-close: 44px;
+  --wege-size-icon-sm: 16px;
+  --wege-size-icon-md: 20px;
+  --wege-size-icon-lg: 24px;
+  --wege-size-dot: 6px;
+  --wege-card-body-min-h: 104px;
+  --wege-card-name-min-h: 34px;
+  --wege-max-width-gallery: 1440px;
+  --wege-viewer-chrome: 200px;
+  --wege-viewer-max-height-ratio: 0.85;
+  --wege-aspect-product-w: 3.5;
+  --wege-aspect-product-h: 6;
+  --wege-radius-card: 12px;
+  --wege-radius-full: 9999px;
+  --wege-shadow-card: 0 1px 3px rgb(17 17 17 / 0.06), 0 1px 2px rgb(17 17 17 / 0.04);
+  --wege-shadow-viewer: 0 8px 40px rgb(17 17 17 / 0.18);
+}
+
+@keyframes wege-skeleton-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes wege-skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}

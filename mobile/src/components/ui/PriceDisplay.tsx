@@ -1,5 +1,26 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { formatPrice } from "../../lib/formatPrice";
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "baseline",
+    gap: 6,
+  },
+  price: {
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: "500",
+    color: "#111111",
+  },
+  oldPrice: {
+    fontSize: 13,
+    lineHeight: 18,
+    color: "#757575",
+    textDecorationLine: "line-through",
+  },
+});
 
 export function PriceDisplay({
   price,
@@ -9,13 +30,9 @@ export function PriceDisplay({
   oldPrice?: number;
 }) {
   return (
-    <View className="flex-row flex-wrap items-baseline gap-price-gap">
-      <Text className="text-price font-medium leading-tight text-ink">{formatPrice(price)}</Text>
-      {oldPrice != null ? (
-        <Text className="text-price-old leading-tight text-muted line-through">
-          {formatPrice(oldPrice)}
-        </Text>
-      ) : null}
+    <View style={styles.row}>
+      <Text style={styles.price}>{formatPrice(price)}</Text>
+      {oldPrice != null ? <Text style={styles.oldPrice}>{formatPrice(oldPrice)}</Text> : null}
     </View>
   );
 }

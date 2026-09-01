@@ -8,7 +8,7 @@ export type ImageIndicatorProps = {
 export function ImageIndicator({ total, current }: ImageIndicatorProps) {
   return (
     <View className="items-center gap-meta">
-      <Text className="text-indicator text-surface/80">
+      <Text style={{ fontSize: 12, lineHeight: 16, color: "rgba(255,255,255,0.8)" }}>
         {current + 1} / {total}
       </Text>
       {total > 1 ? (

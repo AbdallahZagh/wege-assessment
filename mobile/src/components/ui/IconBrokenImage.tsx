@@ -1,15 +1,16 @@
-import { Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
-type IconBrokenImageProps = {
-  className?: string;
-};
+const styles = StyleSheet.create({
+  icon: {
+    fontSize: 24,
+    lineHeight: 28,
+    color: "#757575",
+  },
+});
 
-export function IconBrokenImage({ className }: IconBrokenImageProps) {
+export function IconBrokenImage({ className }: { className?: string }) {
   return (
-    <Text
-      className={`text-icon-lg leading-tight${className ? ` ${className}` : ""}`}
-      accessibilityElementsHidden
-    >
+    <Text style={styles.icon} accessibilityElementsHidden>
       ▢
     </Text>
   );

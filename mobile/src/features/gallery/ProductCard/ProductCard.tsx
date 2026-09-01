@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    minHeight: 104,
+    minHeight: 112,
     padding: 12,
-    gap: 8,
+    gap: 6,
     borderTopWidth: 1,
     borderTopColor: "#e8e8e6",
   },

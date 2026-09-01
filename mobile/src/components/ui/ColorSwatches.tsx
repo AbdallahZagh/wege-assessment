@@ -23,7 +23,9 @@ export function ColorSwatches({
   return (
     <View className={isViewer ? "items-center gap-2" : undefined}>
       {isViewer ? (
-        <Text className="text-name font-medium text-surface">{selected?.color}</Text>
+        <Text style={{ fontSize: 12, lineHeight: 16, color: "rgba(255,255,255,0.8)" }}>
+          {selected?.color}
+        </Text>
       ) : null}
       <View className={isViewer ? "flex-row flex-wrap justify-center gap-3" : "flex-row flex-wrap gap-swatch"}>
         {variants.map((item, index) => {

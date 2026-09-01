@@ -33,7 +33,8 @@ module.exports = {
         "icon-md": "var(--wege-size-icon-md)",
       },
       lineHeight: {
-        tight: "var(--wege-line-height-tight)",
+        tight: "18px",
+        none: "20px",
       },
       letterSpacing: {
         name: "var(--wege-letter-spacing-name)",

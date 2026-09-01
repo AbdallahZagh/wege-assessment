@@ -137,7 +137,7 @@ export function ZoomableImage({
   return (
     <GestureDetector gesture={composed}>
       <Animated.View
-        className="h-full w-full overflow-hidden bg-surface"
+        style={{ flex: 1, width: "100%", overflow: "hidden", backgroundColor: "#ffffff" }}
         onLayout={(event) => {
           frameW.value = event.nativeEvent.layout.width;
           frameH.value = event.nativeEvent.layout.height;
