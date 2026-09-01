@@ -1,9 +1,9 @@
 "use client";
 
-import { ColorSwatches } from "@/components/ui/ColorSwatches";
-import { FavoriteButton } from "@/components/ui/FavoriteButton";
-import { PriceDisplay } from "@/components/ui/PriceDisplay";
-import { ProductImage } from "@/components/ui/ProductImage";
+import { ProductCardFavorite } from "@/features/gallery/ProductCard/ProductCardFavorite";
+import { ProductCardImage } from "@/features/gallery/ProductCard/ProductCardImage";
+import { ProductCardPrice } from "@/features/gallery/ProductCard/ProductCardPrice";
+import { ProductCardSwatches } from "@/features/gallery/ProductCard/ProductCardSwatches";
 import { ImageViewer } from "@/features/gallery/ImageViewer/ImageViewer";
 import { useProductCardState } from "@/features/gallery/hooks/useProductCardState";
 import { productImageUrl } from "@/lib/imageUrl";
@@ -19,34 +19,30 @@ export function ProductCard({ product, priority }: ProductCardProps) {
   const preview = state.variant.images[0];
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-card bg-surface shadow-card">
-      <div className="relative shrink-0">
-        <ProductImage
+    <article className="flex h-full w-full flex-col overflow-hidden rounded-card border border-line bg-card shadow-card">
+      <div className="relative shrink-0 bg-card-image">
+        <ProductCardImage
           src={productImageUrl(preview)}
           alt={`${product.name} in ${state.variant.color}`}
           onOpen={state.openViewer}
           priority={priority}
         />
-        <FavoriteButton selected={state.favorite} onToggle={state.toggleFavorite} />
+        <ProductCardFavorite selected={state.favorite} onToggle={state.toggleFavorite} />
       </div>
 
-      <div className="flex h-card-meta-h shrink-0 flex-col justify-between gap-2 px-card py-card">
-        <div className="flex h-card-name-h items-start justify-between gap-2">
-          <h2 className="line-clamp-2 min-w-0 flex-1 text-body font-medium leading-body-tight text-ink">
-            {product.name}
-          </h2>
-          <PriceDisplay price={product.price} oldPrice={product.oldPrice} />
-        </div>
-        <div className="flex h-card-swatch-h items-center">
-          <ColorSwatches
+      <div className="flex min-h-card-body-min-h flex-1 flex-col gap-card-gap border-t border-line p-card-pad">
+        <h2 className="line-clamp-2 min-h-card-name-min-h text-name font-medium leading-tight tracking-name text-ink">
+          {product.name}
+        </h2>
+        <ProductCardPrice price={product.price} oldPrice={product.oldPrice} />
+        <div className="mt-auto flex items-center justify-between gap-2 pt-1">
+          <ProductCardSwatches
             variants={product.variants}
             selectedIndex={state.selectedVariantIndex}
             onSelect={state.selectVariant}
           />
+          <p className="shrink-0 text-color-label text-muted">{state.variant.color}</p>
         </div>
-        <p className="h-card-color-h truncate text-eyebrow leading-none tracking-eyebrow text-muted">
-          {state.variant.color}
-        </p>
       </div>
 
       {state.viewerOpen ? (

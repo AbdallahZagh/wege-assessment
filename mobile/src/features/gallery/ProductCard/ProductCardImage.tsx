@@ -1,18 +1,38 @@
-import { layout } from "@shared/layout";
 import { Image } from "expo-image";
 import { useEffect, useState } from "react";
-import { Pressable, View } from "react-native";
-import { IconBrokenImage } from "./IconBrokenImage";
-import { ImageSkeleton } from "./ImageSkeleton";
-import { productImageSource } from "../../lib/images";
+import { Pressable, StyleSheet, View } from "react-native";
+import { IconBrokenImage } from "../../../components/ui/IconBrokenImage";
+import { ImageSkeleton } from "../../../components/ui/ImageSkeleton";
+import { productImageSource } from "../../../lib/images";
 
-export type ProductImageProps = {
+const ASPECT_RATIO = 3.5 / 6;
+
+const styles = StyleSheet.create({
+  pressable: {
+    width: "100%",
+    aspectRatio: ASPECT_RATIO,
+    overflow: "hidden",
+    backgroundColor: "#f5f4f2",
+  },
+  imageWrap: {
+    width: "100%",
+    height: "100%",
+  },
+  fallback: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#f5f4f2",
+  },
+});
+
+export type ProductCardImageProps = {
   path: string;
   alt: string;
   onOpen?: () => void;
 };
 
-export function ProductImage({ path, alt, onOpen }: ProductImageProps) {
+export function ProductCardImage({ path, alt, onOpen }: ProductCardImageProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -26,22 +46,21 @@ export function ProductImage({ path, alt, onOpen }: ProductImageProps) {
       onPress={onOpen}
       accessibilityRole="button"
       accessibilityLabel={`View images of ${alt}`}
-      className="w-full overflow-hidden bg-fallback"
-      style={{ aspectRatio: layout.aspectProduct }}
+      style={styles.pressable}
     >
       {error ? (
-        <View className="h-full w-full items-center justify-center bg-fallback">
+        <View style={styles.fallback}>
           <IconBrokenImage className="text-muted" />
         </View>
       ) : (
-        <View className="h-full w-full">
+        <View style={styles.imageWrap}>
           {loading ? <ImageSkeleton /> : null}
           <Image
             key={path}
             source={productImageSource(path)}
             contentFit="cover"
             contentPosition="center"
-            style={{ width: "100%", height: "100%" }}
+            style={StyleSheet.absoluteFill}
             onLoad={() => setLoading(false)}
             onError={() => {
               setLoading(false);

@@ -7,7 +7,7 @@ type IconBrokenImageProps = {
 export function IconBrokenImage({ className }: IconBrokenImageProps) {
   return (
     <Text
-      className={`text-icon-lg leading-body${className ? ` ${className}` : ""}`}
+      className={`text-icon-lg leading-tight${className ? ` ${className}` : ""}`}
       accessibilityElementsHidden
     >
       ▢

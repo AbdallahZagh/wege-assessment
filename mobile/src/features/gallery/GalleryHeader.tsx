@@ -8,15 +8,11 @@ export function GalleryHeader() {
 
   return (
     <View
-      className="border-b border-line bg-canvas px-page py-header-y"
-      style={{ paddingTop: insets.top + layout.headerSafe }}
+      className="min-h-header justify-center border-b border-line bg-canvas px-page"
+      style={{ paddingTop: insets.top + layout.headerSafe, paddingBottom: 12 }}
     >
-      <Text className="text-title font-medium tracking-tight text-ink">
-        {galleryCopy.storeName}
-      </Text>
-      <Text className="mt-meta text-eyebrow tracking-eyebrow text-muted">
-        {galleryCopy.pageLabel}
-      </Text>
+      <Text className="text-header font-medium leading-tight text-ink">{galleryCopy.storeName}</Text>
+      <Text className="text-subheader leading-tight text-muted">{galleryCopy.pageLabel}</Text>
     </View>
   );
 }

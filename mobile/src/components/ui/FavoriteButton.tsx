@@ -1,3 +1,4 @@
+import { tokens } from "@shared/tokens";
 import { Pressable } from "react-native";
 import { IconHeart } from "./IconHeart";
 
@@ -13,9 +14,12 @@ export function FavoriteButton({ selected, onToggle }: FavoriteButtonProps) {
       accessibilityRole="button"
       accessibilityState={{ selected }}
       accessibilityLabel={selected ? "Remove from favorites" : "Add to favorites"}
-      className="absolute right-favorite top-favorite size-btn-favorite items-center justify-center rounded-full bg-surface/90 shadow-favorite"
+      className="absolute top-favorite right-favorite size-btn-favorite items-center justify-center rounded-full bg-favorite-scrim"
     >
-      <IconHeart filled={selected} className="text-ink" />
+      <IconHeart
+        filled={selected}
+        color={selected ? tokens.color.favoriteOn : tokens.color.favoriteOff}
+      />
     </Pressable>
   );
 }

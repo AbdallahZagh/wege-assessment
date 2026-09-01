@@ -67,17 +67,17 @@ export function ImageViewer({
         aria-label="Close gallery"
         className="absolute top-favorite right-favorite z-10 flex size-btn-close items-center justify-center rounded-full bg-surface text-ink shadow-viewer"
       >
-        <IconClose className="size-icon-close" />
+        <IconClose className="size-icon-md" />
       </button>
 
       <div className="flex min-h-0 flex-1 flex-col">
         <div className="shrink-0 px-viewer-x pt-viewer-top text-center">
-          <p className="text-body font-medium text-surface">{productName}</p>
+          <p className="text-name font-medium text-surface">{productName}</p>
         </div>
 
         <div className="flex min-h-0 flex-1 items-center justify-center px-viewer-x py-3">
           <div
-            className="viewer-frame relative overflow-hidden rounded-card bg-surface shadow-viewer"
+            className="viewer-frame relative overflow-hidden bg-surface shadow-viewer"
             onTouchStart={(event) => {
               if (scale > 1.02) {
                 return;
@@ -127,7 +127,7 @@ export function ImageViewer({
           </div>
         </div>
 
-        <div className="flex shrink-0 flex-col items-center gap-card-gap px-viewer-x pb-viewer-bottom pt-2">
+        <div className="flex shrink-0 flex-col items-center gap-meta px-viewer-x pb-viewer-bottom pt-2">
           <ImageIndicator total={images.length} current={current} />
           <ColorSwatches
             variant="viewer"

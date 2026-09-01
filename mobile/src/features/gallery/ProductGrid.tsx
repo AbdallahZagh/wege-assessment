@@ -13,7 +13,7 @@ export function ProductGrid() {
       keyExtractor={(item) => String(item.id)}
       numColumns={2}
       showsVerticalScrollIndicator={false}
-      columnWrapperStyle={{ gap: layout.grid }}
+      columnWrapperStyle={{ gap: layout.grid, alignItems: "stretch" }}
       contentContainerStyle={{
         paddingHorizontal: layout.page,
         paddingTop: layout.page,
@@ -21,7 +21,7 @@ export function ProductGrid() {
         gap: layout.grid,
       }}
       renderItem={({ item }) => (
-        <View style={{ width: cardWidth }}>
+        <View style={{ width: cardWidth, flex: 1 }}>
           <ProductCard product={item} />
         </View>
       )}

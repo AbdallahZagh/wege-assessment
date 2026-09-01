@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 import { IconBrokenImage } from "@/components/ui/IconBrokenImage";
 import { ImageSkeleton } from "@/components/ui/ImageSkeleton";
 
-export type ProductImageProps = {
+export type ProductCardImageProps = {
   src: string;
   alt: string;
   onOpen?: () => void;
   priority?: boolean;
 };
 
-export function ProductImage({ src, alt, onOpen, priority }: ProductImageProps) {
+export function ProductCardImage({ src, alt, onOpen, priority }: ProductCardImageProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -25,11 +25,11 @@ export function ProductImage({ src, alt, onOpen, priority }: ProductImageProps) 
     <button
       type="button"
       onClick={onOpen}
-      className="relative block w-full overflow-hidden bg-fallback aspect-product"
+      className="relative block w-full overflow-hidden bg-card-image aspect-product"
       aria-label={`View images of ${alt}`}
     >
       {error ? (
-        <span className="flex h-full w-full items-center justify-center bg-fallback text-muted">
+        <span className="flex h-full w-full items-center justify-center bg-card-image text-muted">
           <IconBrokenImage className="size-icon-lg text-muted" />
         </span>
       ) : (

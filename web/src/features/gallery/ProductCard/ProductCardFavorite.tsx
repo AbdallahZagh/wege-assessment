@@ -1,11 +1,11 @@
 import { IconHeart } from "@/components/ui/IconHeart";
 
-export type FavoriteButtonProps = {
+export type ProductCardFavoriteProps = {
   selected: boolean;
   onToggle: () => void;
 };
 
-export function FavoriteButton({ selected, onToggle }: FavoriteButtonProps) {
+export function ProductCardFavorite({ selected, onToggle }: ProductCardFavoriteProps) {
   return (
     <button
       type="button"
@@ -15,10 +15,10 @@ export function FavoriteButton({ selected, onToggle }: FavoriteButtonProps) {
       }}
       aria-pressed={selected}
       aria-label={selected ? "Remove from favorites" : "Add to favorites"}
-      className="absolute top-favorite right-favorite flex size-btn-favorite items-center justify-center rounded-full bg-favorite-scrim"
+      className="absolute top-card-favorite right-card-favorite flex size-card-favorite items-center justify-center rounded-full border border-line/60 bg-surface shadow-card"
     >
       <IconHeart
-        className={`size-icon-sm ${selected ? "text-favorite-on" : "text-favorite-off"}`}
+        className={`size-icon-sm ${selected ? "text-ink" : "text-muted"}`}
         filled={selected}
       />
     </button>

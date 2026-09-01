@@ -1,77 +1,80 @@
 :root {
-  /* Colors */
-  --wege-color-canvas: #f3efe8;
-  --wege-color-surface: #fffbf7;
-  --wege-color-ink: #1c1917;
-  --wege-color-muted: #8a8279;
-  --wege-color-line: #e4dcd0;
-  --wege-color-sale: #9b3d2a;
-  --wege-color-overlay: rgb(28 25 23 / 0.78);
-  --wege-color-skeleton: #e8e0d4;
-  --wege-color-skeleton-shine: rgb(255 251 247 / 0.7);
-  --wege-color-fallback: #efe8de;
+  /* Colors — see shared/tokens.ts */
+  --wege-color-canvas: #fafaf8;
+  --wege-color-surface: #ffffff;
+  --wege-color-ink: #111111;
+  --wege-color-muted: #757575;
+  --wege-color-line: #e8e8e6;
+  --wege-color-sale: #b42318;
+  --wege-color-overlay: rgb(17 17 17 / 0.72);
+  --wege-color-favorite-on: #111111;
+  --wege-color-favorite-off: #ffffff;
+  --wege-color-favorite-scrim: rgb(17 17 17 / 0.4);
+  --wege-color-skeleton: #efefea;
+  --wege-color-skeleton-shine: rgb(255 255 255 / 0.6);
+  --wege-color-fallback: #f3f3f0;
+  --wege-color-card: #ffffff;
+  --wege-color-card-image: #f5f4f2;
 
   /* Typography */
-  --wege-font-size-eyebrow: 11px;
-  --wege-font-size-body: 14px;
+  --wege-font-size-header: 15px;
+  --wege-font-size-subheader: 12px;
+  --wege-font-size-name: 13px;
   --wege-font-size-price: 13px;
-  --wege-font-size-price-old: 12px;
+  --wege-font-size-price-old: 13px;
   --wege-font-size-indicator: 12px;
-  --wege-font-size-title: 22px;
-  --wege-line-height-body: 20px;
-  --wege-line-height-body-tight: 18px;
-  --wege-line-height-price-old: 17px;
-  --wege-letter-spacing-eyebrow: 0.22em;
+  --wege-font-size-color-label: 11px;
+  --wege-line-height-tight: 1.3;
+  --wege-letter-spacing-name: 0.01em;
 
   /* Spacing */
-  --wege-spacing-page: 24px;
-  --wege-spacing-page-lg: 40px;
-  --wege-spacing-grid: 20px;
-  --wege-spacing-meta: 6px;
-  --wege-spacing-swatch: 8px;
-  --wege-spacing-card: 12px;
-  --wege-spacing-card-gap: 8px;
-  --wege-card-meta-h: 118px;
-  --wege-card-name-h: 36px;
-  --wege-card-swatch-h: 22px;
-  --wege-card-color-h: 14px;
-  --wege-spacing-header-y: 16px;
+  --wege-spacing-page: 16px;
+  --wege-spacing-page-lg: 24px;
+  --wege-spacing-page-y: 16px;
+  --wege-spacing-grid: 8px;
+  --wege-spacing-meta-top: 8px;
+  --wege-spacing-meta: 4px;
+  --wege-spacing-swatch: 6px;
+  --wege-spacing-favorite: 8px;
+  --wege-spacing-price-gap: 6px;
   --wege-spacing-header-safe: 12px;
-  --wege-spacing-favorite: 12px;
   --wege-spacing-viewer-x: 16px;
+  --wege-spacing-viewer-top: 56px;
   --wege-spacing-viewer-bottom: 32px;
   --wege-spacing-grid-bottom: 56px;
-  --wege-spacing-grid-row: 28px;
-  --wege-spacing-viewer-top: 56px;
-  --wege-viewer-chrome: 240px;
   --wege-spacing-indicator-gap: 6px;
-  --wege-spacing-price-gap: 6px;
   --wege-spacing-swipe-threshold: 48px;
+  --wege-spacing-card-pad: 12px;
+  --wege-spacing-card-gap: 8px;
+  --wege-spacing-card-favorite: 10px;
 
   /* Sizes */
-  --wege-size-swatch: 18px;
-  --wege-size-swatch-viewer: 28px;
+  --wege-size-header: 56px;
+  --wege-size-swatch: 14px;
+  --wege-size-swatch-card: 18px;
+  --wege-size-swatch-viewer: 20px;
+  --wege-size-btn-favorite: 32px;
+  --wege-size-card-favorite: 34px;
+  --wege-size-btn-close: 44px;
   --wege-size-icon-sm: 16px;
-  --wege-size-icon-md: 24px;
-  --wege-size-icon-lg: 32px;
-  --wege-size-icon-xl: 40px;
-  --wege-size-icon-close: 28px;
-  --wege-size-btn-favorite: 36px;
-  --wege-size-btn-close: 52px;
+  --wege-size-icon-md: 20px;
+  --wege-size-icon-lg: 24px;
   --wege-size-dot: 6px;
+  --wege-card-body-min-h: 104px;
+  --wege-card-name-min-h: 34px;
   --wege-max-width-gallery: 1440px;
+  --wege-viewer-chrome: 200px;
   --wege-viewer-max-height-ratio: 0.85;
   --wege-aspect-product-w: 3.5;
   --wege-aspect-product-h: 6;
 
   /* Radius */
-  --wege-radius-card: 16px;
+  --wege-radius-card: 12px;
   --wege-radius-full: 9999px;
 
   /* Shadows */
-  --wege-shadow-favorite: 0 1px 2px rgb(28 25 23 / 0.08);
-  --wege-shadow-card: 0 2px 12px rgb(28 25 23 / 0.06);
-  --wege-shadow-viewer: 0 20px 40px rgb(28 25 23 / 0.28);
+  --wege-shadow-card: 0 1px 3px rgb(17 17 17 / 0.06), 0 1px 2px rgb(17 17 17 / 0.04);
+  --wege-shadow-viewer: 0 8px 40px rgb(17 17 17 / 0.18);
 
   /* Animation */
   --wege-animation-skeleton: wege-skeleton-pulse 1.5s ease-in-out infinite;

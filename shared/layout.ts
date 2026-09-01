@@ -1,17 +1,24 @@
+import { tokens } from "./tokens";
+
 /** Runtime layout numbers — keep in sync with shared/theme.css */
 export const layout = {
-  page: 24,
-  grid: 20,
-  viewerPaddingX: 16,
-  viewerTop: 56,
-  viewerBottom: 32,
-  viewerMaxHeightRatio: 0.85,
-  aspectProductW: 3.5,
-  aspectProductH: 6,
-  aspectProduct: 3.5 / 6,
-  gridPaddingBottom: 56,
-  headerSafe: 12,
-  swipeThreshold: 48,
+  page: tokens.space.pageX,
+  pageDesktop: tokens.space.pageXDesktop,
+  pageY: tokens.space.pageY,
+  grid: tokens.space.grid,
+  metaTop: tokens.space.metaTop,
+  meta: tokens.space.meta,
+  viewerPaddingX: tokens.space.viewerX,
+  viewerTop: tokens.space.viewerTop,
+  viewerBottom: tokens.space.viewerBottom,
+  viewerMaxHeightRatio: tokens.viewer.maxHeightRatio,
+  aspectProductW: tokens.aspect.w,
+  aspectProductH: tokens.aspect.h,
+  aspectProduct: tokens.aspect.w / tokens.aspect.h,
+  gridPaddingBottom: tokens.space.gridPaddingBottom,
+  headerSafe: tokens.space.headerSafe,
+  swipeThreshold: tokens.space.swipeThreshold,
+  headerHeight: tokens.size.header,
 } as const;
 
 export function viewerFrameWidth(screenWidth: number, screenHeight: number): number {

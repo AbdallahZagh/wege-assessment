@@ -57,10 +57,10 @@ export function ImageViewer({
           </Pressable>
 
           <View
-            className="flex-1 items-center justify-center gap-card-gap px-viewer-x"
+            className="flex-1 items-center justify-center gap-meta px-viewer-x"
             style={{ paddingTop: insets.top + layout.viewerTop }}
           >
-            <Text className="text-center text-body font-medium text-surface">
+            <Text className="text-center text-name font-medium text-surface">
               {productName}
             </Text>
             <View
@@ -68,7 +68,7 @@ export function ImageViewer({
                 width: FRAME_WIDTH,
                 aspectRatio: layout.aspectProductW / layout.aspectProductH,
               }}
-              className="overflow-hidden rounded-card bg-surface shadow-viewer"
+              className="overflow-hidden bg-surface shadow-viewer"
             >
               <ZoomableImage
                 source={productImageSource(images[current])}
@@ -89,7 +89,7 @@ export function ImageViewer({
           </View>
 
           <View
-            className="items-center gap-card-gap px-viewer-x"
+            className="items-center gap-meta px-viewer-x"
             style={{ paddingBottom: Math.max(insets.bottom, layout.viewerBottom) }}
           >
             <ImageIndicator total={images.length} current={current} />

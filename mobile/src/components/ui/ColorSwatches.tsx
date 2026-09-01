@@ -1,3 +1,4 @@
+import { tokens } from "@shared/tokens";
 import { Pressable, Text, View } from "react-native";
 import type { ProductVariant } from "../../lib/products";
 
@@ -8,6 +9,18 @@ export type ColorSwatchesProps = {
   variant?: "card" | "viewer";
 };
 
+function isLightColor(hex: string): boolean {
+  const normalized = hex.replace("#", "");
+  if (normalized.length !== 6) {
+    return false;
+  }
+
+  const r = Number.parseInt(normalized.slice(0, 2), 16);
+  const g = Number.parseInt(normalized.slice(2, 4), 16);
+  const b = Number.parseInt(normalized.slice(4, 6), 16);
+  return (r * 299 + g * 587 + b * 114) / 1000 > 200;
+}
+
 export function ColorSwatches({
   variants,
   selectedIndex,
@@ -16,21 +29,18 @@ export function ColorSwatches({
 }: ColorSwatchesProps) {
   const isViewer = variant === "viewer";
   const selected = variants[selectedIndex];
+  const swatchSize = isViewer ? tokens.size.swatchViewer : tokens.size.swatch;
 
   return (
     <View className={isViewer ? "items-center gap-2" : undefined}>
       {isViewer ? (
-        <Text className="text-body font-medium text-surface">{selected?.color}</Text>
+        <Text className="text-name font-medium text-surface">{selected?.color}</Text>
       ) : null}
-      <View
-        className={
-          isViewer
-            ? "flex-row flex-wrap justify-center gap-3 rounded-full bg-surface px-4 py-3 shadow-viewer"
-            : "flex-row flex-wrap gap-swatch"
-        }
-      >
+      <View className={isViewer ? "flex-row flex-wrap justify-center gap-3" : "flex-row flex-wrap gap-swatch"}>
         {variants.map((item, index) => {
           const active = index === selectedIndex;
+          const needsStroke = isLightColor(item.colorCode);
+
           return (
             <Pressable
               key={item.color}
@@ -38,17 +48,29 @@ export function ColorSwatches({
               accessibilityRole="button"
               accessibilityLabel={item.color}
               accessibilityState={{ selected: active }}
-              className={
-                isViewer
-                  ? `size-swatch-viewer rounded-full border-2 shadow-favorite ${
-                      active ? "border-ink" : "border-line"
-                    }`
-                  : `size-swatch rounded-full border ${
-                      active ? "border-2 border-ink" : "border border-line"
-                    }`
+              style={
+                active
+                  ? {
+                      padding: 2,
+                      borderRadius: swatchSize,
+                      backgroundColor: tokens.color.bg,
+                      borderWidth: 1.5,
+                      borderColor: tokens.color.text,
+                    }
+                  : undefined
               }
-              style={{ backgroundColor: item.colorCode }}
-            />
+            >
+              <View
+                style={{
+                  width: swatchSize,
+                  height: swatchSize,
+                  borderRadius: swatchSize / 2,
+                  backgroundColor: item.colorCode,
+                  borderWidth: 1,
+                  borderColor: needsStroke ? tokens.color.border : "transparent",
+                }}
+              />
+            </Pressable>
           );
         })}
       </View>

@@ -1,11 +1,11 @@
 import { formatPrice } from "@/lib/formatPrice";
 
-export type PriceDisplayProps = {
+export type ProductCardPriceProps = {
   price: number;
   oldPrice?: number;
 };
 
-export function PriceDisplay({ price, oldPrice }: PriceDisplayProps) {
+export function ProductCardPrice({ price, oldPrice }: ProductCardPriceProps) {
   return (
     <p className="text-price leading-tight">
       <span className="font-medium text-ink">{formatPrice(price)}</span>

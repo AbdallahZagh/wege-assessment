@@ -1,13 +1,13 @@
 "use client";
 
-import { ProductCard } from "@/features/gallery/ProductCard/ProductCard";
 import { products } from "@/lib/products";
+import { ProductCard } from "@/features/gallery/ProductCard/ProductCard";
 
 export function ProductGrid() {
   return (
-    <ul className="mx-auto grid max-w-gallery grid-cols-2 gap-x-grid gap-y-grid-row px-page py-page pb-grid-bottom sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-6 lg:gap-y-8 lg:px-page-lg lg:py-page-lg lg:pb-16">
+    <ul className="mx-auto grid w-full max-w-gallery grid-cols-2 items-stretch gap-grid px-page py-page-y pb-grid-bottom lg:grid-cols-6 lg:px-page-lg">
       {products.map((product, index) => (
-        <li key={product.id}>
+        <li key={product.id} className="flex min-h-0 min-w-0">
           <ProductCard product={product} priority={index < 6} />
         </li>
       ))}

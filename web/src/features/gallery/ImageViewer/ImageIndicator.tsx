@@ -5,7 +5,7 @@ export type ImageIndicatorProps = {
 
 export function ImageIndicator({ total, current }: ImageIndicatorProps) {
   return (
-    <div className="flex flex-col items-center gap-card-gap">
+    <div className="flex flex-col items-center gap-meta">
       <p className="text-indicator text-surface/80">
         {current + 1} / {total}
       </p>
