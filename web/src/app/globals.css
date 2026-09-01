@@ -20,6 +20,7 @@
   --font-sans: var(--font-inter);
 
   --text-header: var(--wege-font-size-header);
+  --text-title: var(--wege-font-size-title);
   --text-subheader: var(--wege-font-size-subheader);
   --text-name: var(--wege-font-size-name);
   --text-price: var(--wege-font-size-price);
@@ -38,6 +39,7 @@
   --spacing-meta: var(--wege-spacing-meta);
   --spacing-swatch: var(--wege-spacing-swatch);
   --spacing-favorite: var(--wege-spacing-favorite);
+  --spacing-header-y: var(--wege-spacing-header-y);
   --spacing-header-safe: var(--wege-spacing-header-safe);
   --spacing-viewer-x: var(--wege-spacing-viewer-x);
   --spacing-viewer-top: var(--wege-spacing-viewer-top);

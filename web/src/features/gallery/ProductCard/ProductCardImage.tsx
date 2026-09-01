@@ -25,7 +25,7 @@ export function ProductCardImage({ src, alt, onOpen, priority }: ProductCardImag
     <button
       type="button"
       onClick={onOpen}
-      className="relative block w-full overflow-hidden bg-card-image aspect-product"
+      className="relative block w-full touch-manipulation overflow-hidden bg-card-image aspect-product"
       aria-label={`View images of ${alt}`}
     >
       {error ? (
@@ -44,6 +44,7 @@ export function ProductCardImage({ src, alt, onOpen, priority }: ProductCardImag
             priority={priority}
             className="object-cover object-center"
             onLoad={() => setLoading(false)}
+            onLoadingComplete={() => setLoading(false)}
             onError={() => {
               setLoading(false);
               setError(true);

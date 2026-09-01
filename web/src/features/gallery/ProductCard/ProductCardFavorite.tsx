@@ -15,7 +15,7 @@ export function ProductCardFavorite({ selected, onToggle }: ProductCardFavoriteP
       }}
       aria-pressed={selected}
       aria-label={selected ? "Remove from favorites" : "Add to favorites"}
-      className="absolute top-card-favorite right-card-favorite flex size-card-favorite items-center justify-center rounded-full border border-line/60 bg-surface shadow-card"
+      className="absolute top-card-favorite right-card-favorite z-10 flex size-card-favorite items-center justify-center rounded-full border border-line/60 bg-surface shadow-card"
     >
       <IconHeart
         className={`size-icon-sm ${selected ? "text-ink" : "text-muted"}`}

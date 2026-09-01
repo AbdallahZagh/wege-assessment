@@ -44,7 +44,7 @@ export function ProductCardSwatches({
               aria-label={item.color}
               aria-pressed={active}
               onClick={() => onSelect(index)}
-              className={`size-swatch-card rounded-full border transition-transform ${
+                className={`size-swatch-card touch-manipulation rounded-full border transition-transform ${
                 active
                   ? "scale-110 border-ink"
                   : needsStroke

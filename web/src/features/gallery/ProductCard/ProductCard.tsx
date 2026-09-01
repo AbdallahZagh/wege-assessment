@@ -19,8 +19,8 @@ export function ProductCard({ product, priority }: ProductCardProps) {
   const preview = state.variant.images[0];
 
   return (
-    <article className="flex h-full w-full flex-col overflow-hidden rounded-card border border-line bg-card shadow-card">
-      <div className="relative shrink-0 bg-card-image">
+    <article className="flex h-full w-full flex-col rounded-card border border-line bg-card shadow-card">
+      <div className="relative shrink-0 overflow-hidden rounded-t-card bg-card-image">
         <ProductCardImage
           src={productImageUrl(preview)}
           alt={`${product.name} in ${state.variant.color}`}

@@ -18,6 +18,7 @@
 
   /* Typography */
   --wege-font-size-header: 15px;
+  --wege-font-size-title: 22px;
   --wege-font-size-subheader: 12px;
   --wege-font-size-name: 13px;
   --wege-font-size-price: 13px;
@@ -38,6 +39,7 @@
   --wege-spacing-favorite: 8px;
   --wege-spacing-price-gap: 6px;
   --wege-spacing-header-safe: 12px;
+  --wege-spacing-header-y: 16px;
   --wege-spacing-viewer-x: 16px;
   --wege-spacing-viewer-top: 56px;
   --wege-spacing-viewer-bottom: 32px;

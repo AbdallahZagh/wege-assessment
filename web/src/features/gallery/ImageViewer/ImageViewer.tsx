@@ -2,6 +2,7 @@
 
 import { layout } from "@shared/layout";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ColorSwatches } from "@/components/ui/ColorSwatches";
 import { IconClose } from "@/components/ui/IconClose";
 import { ImageIndicator } from "@/features/gallery/ImageViewer/ImageIndicator";
@@ -33,12 +34,26 @@ export function ImageViewer({
   const current = Math.min(imageIndex, images.length - 1);
   const src = productImageUrl(images[current]);
   const [scale, setScale] = useState(1);
+  const [mounted, setMounted] = useState(false);
 
   const startX = useRef<number | null>(null);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     setScale(1);
   }, [variant.color, current]);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -59,18 +74,30 @@ export function ImageViewer({
     return () => window.removeEventListener("keydown", onKey);
   }, [current, images.length, onClose, onIndexChange, scale]);
 
-  return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-overlay" role="dialog" aria-modal="true">
+  if (!mounted) {
+    return null;
+  }
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-50 flex flex-col bg-overlay"
+      role="dialog"
+      aria-modal="true"
+      onClick={onClose}
+    >
       <button
         type="button"
-        onClick={onClose}
+        onClick={(event) => {
+          event.stopPropagation();
+          onClose();
+        }}
         aria-label="Close gallery"
-        className="absolute top-favorite right-favorite z-10 flex size-btn-close items-center justify-center rounded-full bg-surface text-ink shadow-viewer"
+        className="absolute top-favorite right-favorite z-20 flex size-btn-close touch-manipulation items-center justify-center rounded-full bg-surface text-ink shadow-viewer"
       >
         <IconClose className="size-icon-md" />
       </button>
 
-      <div className="flex min-h-0 flex-1 flex-col">
+      <div className="flex min-h-0 flex-1 flex-col" onClick={(event) => event.stopPropagation()}>
         <div className="shrink-0 px-viewer-x pt-viewer-top text-center">
           <p className="text-name font-medium text-surface">{productName}</p>
         </div>
@@ -109,7 +136,7 @@ export function ImageViewer({
                 <button
                   type="button"
                   aria-label="Previous image"
-                  className="absolute top-1/2 left-viewer-x hidden size-btn-favorite -translate-y-1/2 items-center justify-center rounded-full bg-surface/90 text-ink lg:flex"
+                  className="absolute top-1/2 left-viewer-x hidden size-btn-favorite -translate-y-1/2 touch-manipulation items-center justify-center rounded-full bg-surface/90 text-ink lg:flex"
                   onClick={() => onIndexChange(Math.max(current - 1, 0))}
                 >
                   ‹
@@ -117,7 +144,7 @@ export function ImageViewer({
                 <button
                   type="button"
                   aria-label="Next image"
-                  className="absolute top-1/2 right-viewer-x hidden size-btn-favorite -translate-y-1/2 items-center justify-center rounded-full bg-surface/90 text-ink lg:flex"
+                  className="absolute top-1/2 right-viewer-x hidden size-btn-favorite -translate-y-1/2 touch-manipulation items-center justify-center rounded-full bg-surface/90 text-ink lg:flex"
                   onClick={() => onIndexChange(Math.min(current + 1, images.length - 1))}
                 >
                   ›
@@ -140,6 +167,7 @@ export function ImageViewer({
           />
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
