@@ -1,66 +1,44 @@
+import { isLightColor } from "@shared/color";
 import { Pressable, StyleSheet, View } from "react-native";
 import type { ProductVariant } from "../../../lib/products";
 
-const SWATCH_SIZE = 18;
-const SWATCH_GAP = 6;
+const SIZE = 18;
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: SWATCH_GAP,
-  },
-  swatchOuter: {
+  row: { flexDirection: "row", flexWrap: "wrap", gap: 6 },
+  active: {
     padding: 2,
-    borderRadius: SWATCH_SIZE,
-    backgroundColor: "#ffffff",
+    borderRadius: SIZE,
+    backgroundColor: "#fff",
     borderWidth: 1.5,
-    borderColor: "#111111",
+    borderColor: "#111",
   },
-  swatch: {
-    width: SWATCH_SIZE,
-    height: SWATCH_SIZE,
-    borderRadius: SWATCH_SIZE / 2,
+  dot: {
+    width: SIZE,
+    height: SIZE,
+    borderRadius: SIZE / 2,
     borderWidth: 1,
   },
 });
 
-function isLightColor(hex: string): boolean {
-  const normalized = hex.replace("#", "");
-  if (normalized.length !== 6) {
-    return false;
-  }
-
-  const r = Number.parseInt(normalized.slice(0, 2), 16);
-  const g = Number.parseInt(normalized.slice(2, 4), 16);
-  const b = Number.parseInt(normalized.slice(4, 6), 16);
-  return (r * 299 + g * 587 + b * 114) / 1000 > 200;
-}
-
-export type ProductCardSwatchesProps = {
+type Props = {
   variants: ProductVariant[];
   selectedIndex: number;
   onSelect: (index: number) => void;
 };
 
-export function ProductCardSwatches({
-  variants,
-  selectedIndex,
-  onSelect,
-}: ProductCardSwatchesProps) {
+export function ProductCardSwatches({ variants, selectedIndex, onSelect }: Props) {
   return (
     <View style={styles.row}>
       {variants.map((item, index) => {
         const active = index === selectedIndex;
-        const needsStroke = isLightColor(item.colorCode);
-
-        const swatch = (
+        const dot = (
           <View
             style={[
-              styles.swatch,
+              styles.dot,
               {
                 backgroundColor: item.colorCode,
-                borderColor: needsStroke ? "#e8e8e6" : "transparent",
+                borderColor: isLightColor(item.colorCode) ? "#e8e8e6" : "transparent",
               },
             ]}
           />
@@ -74,7 +52,7 @@ export function ProductCardSwatches({
             accessibilityLabel={item.color}
             accessibilityState={{ selected: active }}
           >
-            {active ? <View style={styles.swatchOuter}>{swatch}</View> : swatch}
+            {active ? <View style={styles.active}>{dot}</View> : dot}
           </Pressable>
         );
       })}

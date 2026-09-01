@@ -21,8 +21,6 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname, ".."),
   },
-  // Required when opening the dev server from a phone on the same network.
-  // Without this, HTML loads but client JS is blocked and nothing is clickable.
   allowedDevOrigins: [
     "localhost",
     "127.0.0.1",

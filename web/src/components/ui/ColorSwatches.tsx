@@ -1,38 +1,19 @@
+import { isLightColor } from "@shared/color";
 import type { ProductVariant } from "@/lib/products";
 
-export type ColorSwatchesProps = {
+type Props = {
   variants: ProductVariant[];
   selectedIndex: number;
   onSelect: (index: number) => void;
   variant?: "card" | "viewer";
 };
 
-function swatchRing(active: boolean): string | undefined {
-  if (!active) {
-    return undefined;
-  }
-
-  return "0 0 0 2px var(--wege-color-canvas), 0 0 0 3.5px var(--wege-color-ink)";
-}
-
-function isLightColor(hex: string): boolean {
-  const normalized = hex.replace("#", "");
-  if (normalized.length !== 6) {
-    return false;
-  }
-
-  const r = Number.parseInt(normalized.slice(0, 2), 16);
-  const g = Number.parseInt(normalized.slice(2, 4), 16);
-  const b = Number.parseInt(normalized.slice(4, 6), 16);
-  return (r * 299 + g * 587 + b * 114) / 1000 > 200;
-}
-
 export function ColorSwatches({
   variants,
   selectedIndex,
   onSelect,
   variant = "card",
-}: ColorSwatchesProps) {
+}: Props) {
   const isViewer = variant === "viewer";
   const selected = variants[selectedIndex];
 
@@ -47,7 +28,9 @@ export function ColorSwatches({
       >
         {variants.map((item, index) => {
           const active = index === selectedIndex;
-          const needsStroke = isLightColor(item.colorCode);
+          const ring = active
+            ? "0 0 0 2px var(--wege-color-canvas), 0 0 0 3.5px var(--wege-color-ink)"
+            : undefined;
 
           return (
             <li key={item.color}>
@@ -58,17 +41,16 @@ export function ColorSwatches({
                 onClick={() => onSelect(index)}
                 className={
                   isViewer
-                    ? `size-swatch-viewer rounded-full border ${
-                        active ? "border-ink" : "border-line"
-                      }`
+                    ? `size-swatch-viewer rounded-full border ${active ? "border-ink" : "border-line"}`
                     : `size-swatch rounded-full border ${
-                        active ? "border-ink" : needsStroke ? "border-line" : "border-transparent"
+                        active
+                          ? "border-ink"
+                          : isLightColor(item.colorCode)
+                            ? "border-line"
+                            : "border-transparent"
                       }`
                 }
-                style={{
-                  backgroundColor: item.colorCode,
-                  boxShadow: swatchRing(active),
-                }}
+                style={{ backgroundColor: item.colorCode, boxShadow: ring }}
               />
             </li>
           );

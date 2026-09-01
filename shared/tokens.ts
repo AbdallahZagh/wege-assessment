@@ -1,4 +1,3 @@
-/** Design tokens — source of truth per assessment plan. */
 export const tokens = {
   color: {
     bg: "#FAFAF8",

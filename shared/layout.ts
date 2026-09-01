@@ -1,6 +1,5 @@
 import { tokens } from "./tokens";
 
-/** Runtime layout numbers — keep in sync with shared/theme.css */
 export const layout = {
   page: tokens.space.pageX,
   pageDesktop: tokens.space.pageXDesktop,

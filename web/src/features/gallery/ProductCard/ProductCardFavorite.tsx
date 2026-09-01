@@ -1,16 +1,17 @@
 import { IconHeart } from "@/components/ui/IconHeart";
 
-export type ProductCardFavoriteProps = {
+export function ProductCardFavorite({
+  selected,
+  onToggle,
+}: {
   selected: boolean;
   onToggle: () => void;
-};
-
-export function ProductCardFavorite({ selected, onToggle }: ProductCardFavoriteProps) {
+}) {
   return (
     <button
       type="button"
-      onClick={(event) => {
-        event.stopPropagation();
+      onClick={(e) => {
+        e.stopPropagation();
         onToggle();
       }}
       aria-pressed={selected}

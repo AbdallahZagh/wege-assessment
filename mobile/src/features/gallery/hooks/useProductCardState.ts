@@ -1,20 +1,7 @@
-import { useCallback, useState } from "react";
-import type { Product, ProductVariant } from "../../../lib/products";
+import { useState } from "react";
+import type { Product } from "../../../lib/products";
 
-export type ProductCardState = {
-  selectedVariantIndex: number;
-  variant: ProductVariant;
-  favorite: boolean;
-  viewerOpen: boolean;
-  imageIndex: number;
-  selectVariant: (index: number) => void;
-  toggleFavorite: () => void;
-  openViewer: () => void;
-  closeViewer: () => void;
-  setImageIndex: (index: number) => void;
-};
-
-export function useProductCardState(product: Product): ProductCardState {
+export function useProductCardState(product: Product) {
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [favorite, setFavorite] = useState(false);
   const [viewerOpen, setViewerOpen] = useState(false);
@@ -22,22 +9,10 @@ export function useProductCardState(product: Product): ProductCardState {
 
   const variant = product.variants[selectedVariantIndex] ?? product.variants[0];
 
-  const selectVariant = useCallback((index: number) => {
+  function selectVariant(index: number) {
     setSelectedVariantIndex(index);
     setImageIndex(0);
-  }, []);
-
-  const toggleFavorite = useCallback(() => {
-    setFavorite((value) => !value);
-  }, []);
-
-  const openViewer = useCallback(() => {
-    setViewerOpen(true);
-  }, []);
-
-  const closeViewer = useCallback(() => {
-    setViewerOpen(false);
-  }, []);
+  }
 
   return {
     selectedVariantIndex,
@@ -46,9 +21,9 @@ export function useProductCardState(product: Product): ProductCardState {
     viewerOpen,
     imageIndex,
     selectVariant,
-    toggleFavorite,
-    openViewer,
-    closeViewer,
+    toggleFavorite: () => setFavorite((v) => !v),
+    openViewer: () => setViewerOpen(true),
+    closeViewer: () => setViewerOpen(false),
     setImageIndex,
   };
 }

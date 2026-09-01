@@ -60,9 +60,11 @@ export function ZoomableImage({
     panStartX.value = 0;
     panStartY.value = 0;
     setLoading(true);
-    onZoomChange?.(1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- reset when image changes
   }, [resetKey, source]);
+
+  useEffect(() => {
+    onZoomChange?.(1);
+  }, [resetKey, source, onZoomChange]);
 
   const pinch = Gesture.Pinch()
     .onBegin(() => {

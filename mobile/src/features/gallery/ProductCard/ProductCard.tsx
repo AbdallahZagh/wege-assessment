@@ -4,7 +4,7 @@ import type { Product } from "../../../lib/products";
 import { StyleSheet, Text, View } from "react-native";
 import { ProductCardFavorite } from "./ProductCardFavorite";
 import { ProductCardImage } from "./ProductCardImage";
-import { ProductCardPrice } from "./ProductCardPrice";
+import { PriceDisplay } from "../../../components/ui/PriceDisplay";
 import { ProductCardSwatches } from "./ProductCardSwatches";
 
 const styles = StyleSheet.create({
@@ -80,7 +80,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <Text style={styles.name} numberOfLines={2}>
           {product.name}
         </Text>
-        <ProductCardPrice price={product.price} oldPrice={product.oldPrice} />
+        <PriceDisplay price={product.price} oldPrice={product.oldPrice} />
         <View style={styles.footer}>
           <ProductCardSwatches
             variants={product.variants}

@@ -1,20 +1,15 @@
 "use client";
 
+import { PriceDisplay } from "@/components/ui/PriceDisplay";
 import { ProductCardFavorite } from "@/features/gallery/ProductCard/ProductCardFavorite";
 import { ProductCardImage } from "@/features/gallery/ProductCard/ProductCardImage";
-import { ProductCardPrice } from "@/features/gallery/ProductCard/ProductCardPrice";
 import { ProductCardSwatches } from "@/features/gallery/ProductCard/ProductCardSwatches";
 import { ImageViewer } from "@/features/gallery/ImageViewer/ImageViewer";
 import { useProductCardState } from "@/features/gallery/hooks/useProductCardState";
 import { productImageUrl } from "@/lib/imageUrl";
 import type { Product } from "@/lib/products";
 
-export type ProductCardProps = {
-  product: Product;
-  priority?: boolean;
-};
-
-export function ProductCard({ product, priority }: ProductCardProps) {
+export function ProductCard({ product, priority }: { product: Product; priority?: boolean }) {
   const state = useProductCardState(product);
   const preview = state.variant.images[0];
 
@@ -34,7 +29,7 @@ export function ProductCard({ product, priority }: ProductCardProps) {
         <h2 className="line-clamp-2 min-h-card-name-min-h text-name font-medium leading-tight tracking-name text-ink">
           {product.name}
         </h2>
-        <ProductCardPrice price={product.price} oldPrice={product.oldPrice} />
+        <PriceDisplay price={product.price} oldPrice={product.oldPrice} />
         <div className="mt-auto flex items-center justify-between gap-2 pt-1">
           <ProductCardSwatches
             variants={product.variants}

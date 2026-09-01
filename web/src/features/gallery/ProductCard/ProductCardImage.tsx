@@ -43,7 +43,6 @@ export function ProductCardImage({ src, alt, onOpen, priority }: ProductCardImag
             sizes="(min-width: 1024px) 16vw, 50vw"
             priority={priority}
             className="object-cover object-center"
-            onLoad={() => setLoading(false)}
             onLoadingComplete={() => setLoading(false)}
             onError={() => {
               setLoading(false);
