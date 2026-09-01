@@ -1,5 +1,6 @@
 "use client";
 
+import { layout } from "@shared/layout";
 import { useEffect, useRef } from "react";
 import { ColorSwatches } from "@/components/ui/ColorSwatches";
 import { IconClose } from "@/components/ui/IconClose";
@@ -56,14 +57,14 @@ export function ImageViewer({
         type="button"
         onClick={onClose}
         aria-label="Close gallery"
-        className="absolute top-3 right-3 z-10 flex h-11 w-11 items-center justify-center text-surface"
+        className="absolute top-favorite right-favorite z-10 flex size-btn-close items-center justify-center text-surface"
       >
-        <IconClose className="h-6 w-6" />
+        <IconClose className="size-icon-md" />
       </button>
 
-      <div className="flex flex-1 items-center justify-center px-4 pt-14 pb-4">
+      <div className="flex flex-1 items-center justify-center px-viewer-x pt-viewer-top pb-viewer-x">
         <div
-          className="relative w-full max-w-[min(100%,calc(85vh*3.5/6))] aspect-[3.5/6] overflow-hidden bg-surface"
+          className="relative w-full max-w-viewer aspect-product overflow-hidden bg-surface"
           onTouchStart={(event) => {
             startX.current = event.changedTouches[0]?.clientX ?? null;
           }}
@@ -73,9 +74,9 @@ export function ImageViewer({
             }
             const dx = (event.changedTouches[0]?.clientX ?? 0) - startX.current;
             startX.current = null;
-            if (dx <= -48) {
+            if (dx <= -layout.swipeThreshold) {
               onIndexChange(Math.min(current + 1, images.length - 1));
-            } else if (dx >= 48) {
+            } else if (dx >= layout.swipeThreshold) {
               onIndexChange(Math.max(current - 1, 0));
             }
           }}
@@ -90,7 +91,7 @@ export function ImageViewer({
               <button
                 type="button"
                 aria-label="Previous image"
-                className="absolute top-1/2 left-2 hidden h-9 w-9 -translate-y-1/2 items-center justify-center bg-surface/80 text-ink lg:flex"
+                className="absolute top-1/2 left-viewer-x hidden size-btn-favorite -translate-y-1/2 items-center justify-center bg-surface/80 text-ink lg:flex"
                 onClick={() => onIndexChange(Math.max(current - 1, 0))}
               >
                 ‹
@@ -98,7 +99,7 @@ export function ImageViewer({
               <button
                 type="button"
                 aria-label="Next image"
-                className="absolute top-1/2 right-2 hidden h-9 w-9 -translate-y-1/2 items-center justify-center bg-surface/80 text-ink lg:flex"
+                className="absolute top-1/2 right-viewer-x hidden size-btn-favorite -translate-y-1/2 items-center justify-center bg-surface/80 text-ink lg:flex"
                 onClick={() => onIndexChange(Math.min(current + 1, images.length - 1))}
               >
                 ›
@@ -108,7 +109,7 @@ export function ImageViewer({
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-3 px-4 pb-8">
+      <div className="flex flex-col items-center gap-card-gap px-viewer-x pb-viewer-bottom">
         <ImageIndicator total={images.length} current={current} />
         <ColorSwatches
           variants={variants}

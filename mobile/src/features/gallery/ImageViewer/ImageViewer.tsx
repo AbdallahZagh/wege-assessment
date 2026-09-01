@@ -1,3 +1,4 @@
+import { layout } from "@shared/layout";
 import { useState } from "react";
 import { Modal, Pressable, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -39,12 +40,15 @@ export function ImageViewer({
           onPress={onClose}
           accessibilityRole="button"
           accessibilityLabel={`Close gallery for ${productName}`}
-          className="absolute z-10 h-11 w-11 items-center justify-center"
-          style={{ top: insets.top + 8, right: 12 }}
+          className="absolute z-10 size-btn-close items-center justify-center"
+          style={{ top: insets.top + layout.headerSafe, right: layout.page }}
         >
           <IconClose className="text-surface" />
         </Pressable>
-        <View className="flex-1 items-center justify-center px-4" style={{ paddingTop: insets.top + 48 }}>
+        <View
+          className="flex-1 items-center justify-center px-viewer-x"
+          style={{ paddingTop: insets.top + layout.viewerTop }}
+        >
           <ImagePager
             key={variant.color}
             images={images}
@@ -54,7 +58,10 @@ export function ImageViewer({
             onZoomChange={setScale}
           />
         </View>
-        <View className="items-center gap-3 px-4" style={{ paddingBottom: Math.max(insets.bottom, 24) }}>
+        <View
+          className="items-center gap-card-gap px-viewer-x"
+          style={{ paddingBottom: Math.max(insets.bottom, layout.viewerBottom) }}
+        >
           <ImageIndicator total={images.length} current={current} />
           <ColorSwatches
             variants={variants}

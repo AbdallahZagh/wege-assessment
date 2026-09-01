@@ -7,7 +7,7 @@ type IconHeartProps = {
 
 export function IconHeart({ filled = true, className }: IconHeartProps) {
   return (
-    <Text className={className} style={{ fontSize: 16, lineHeight: 18 }}>
+    <Text className={`text-icon-sm leading-body-tight${className ? ` ${className}` : ""}`}>
       {filled ? "♥" : "♡"}
     </Text>
   );

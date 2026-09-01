@@ -1,6 +1,7 @@
 import { Image } from "expo-image";
 import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
+import { ImageSkeleton } from "./ImageSkeleton";
 import { productImageSource } from "../../lib/images";
 
 export type ProductImageProps = {
@@ -10,9 +11,11 @@ export type ProductImageProps = {
 };
 
 export function ProductImage({ path, alt, onOpen }: ProductImageProps) {
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     setError(false);
   }, [path]);
 
@@ -21,23 +24,29 @@ export function ProductImage({ path, alt, onOpen }: ProductImageProps) {
       onPress={onOpen}
       accessibilityRole="button"
       accessibilityLabel={`View images of ${alt}`}
-      className="w-full overflow-hidden bg-skeleton"
-      style={{ aspectRatio: 3.5 / 6 }}
+      className="w-full overflow-hidden bg-skeleton aspect-product"
     >
       {error ? (
         <View className="h-full w-full items-center justify-center bg-fallback">
-          <Text className="text-muted">Image unavailable</Text>
+          <Text className="text-indicator text-muted">Image unavailable</Text>
         </View>
       ) : (
-        <Image
-          key={path}
-          source={productImageSource(path)}
-          contentFit="cover"
-          contentPosition="top"
-          style={{ width: "100%", height: "100%" }}
-          onError={() => setError(true)}
-          accessibilityLabel={alt}
-        />
+        <View className="h-full w-full">
+          {loading ? <ImageSkeleton /> : null}
+          <Image
+            key={path}
+            source={productImageSource(path)}
+            contentFit="cover"
+            contentPosition="top"
+            style={{ width: "100%", height: "100%" }}
+            onLoad={() => setLoading(false)}
+            onError={() => {
+              setLoading(false);
+              setError(true);
+            }}
+            accessibilityLabel={alt}
+          />
+        </View>
       )}
     </Pressable>
   );

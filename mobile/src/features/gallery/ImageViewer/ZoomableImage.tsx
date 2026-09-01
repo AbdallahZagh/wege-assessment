@@ -1,4 +1,5 @@
 import { Image } from "expo-image";
+import { useState } from "react";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   runOnJS,
@@ -7,6 +8,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import type { ImageSourcePropType } from "react-native";
+import { ImageSkeleton } from "../../../components/ui/ImageSkeleton";
 
 export type ZoomableImageProps = {
   source: ImageSourcePropType;
@@ -14,6 +16,7 @@ export type ZoomableImageProps = {
 };
 
 export function ZoomableImage({ source, onZoomChange }: ZoomableImageProps) {
+  const [loading, setLoading] = useState(true);
   const scale = useSharedValue(1);
   const savedScale = useSharedValue(1);
   const translateX = useSharedValue(0);
@@ -83,11 +86,13 @@ export function ZoomableImage({ source, onZoomChange }: ZoomableImageProps) {
           frameH.value = event.nativeEvent.layout.height;
         }}
       >
+        {loading ? <ImageSkeleton /> : null}
         <Animated.View style={[{ width: "100%", height: "100%" }, animatedStyle]}>
           <Image
             source={source}
             contentFit="cover"
             style={{ width: "100%", height: "100%" }}
+            onLoad={() => setLoading(false)}
           />
         </Animated.View>
       </Animated.View>

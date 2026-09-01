@@ -16,7 +16,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const preview = state.variant.images[0];
 
   return (
-    <View className="flex-1 overflow-hidden rounded-2xl bg-surface">
+    <View className="flex-1 overflow-hidden rounded-card bg-surface">
       <View className="relative">
         <ProductImage
           path={preview}
@@ -25,8 +25,8 @@ export function ProductCard({ product }: ProductCardProps) {
         />
         <FavoriteButton selected={state.favorite} onToggle={state.toggleFavorite} />
       </View>
-      <View className="gap-2 px-3 py-3">
-        <Text className="text-[14px] font-medium leading-[18px] text-ink" numberOfLines={2}>
+      <View className="gap-card-gap px-card py-card">
+        <Text className="text-body font-medium leading-body-tight text-ink" numberOfLines={2}>
           {product.name}
         </Text>
         <PriceDisplay price={product.price} oldPrice={product.oldPrice} />
@@ -36,7 +36,7 @@ export function ProductCard({ product }: ProductCardProps) {
             selectedIndex={state.selectedVariantIndex}
             onSelect={state.selectVariant}
           />
-          <Text className="text-[11px] text-muted">{state.variant.color}</Text>
+          <Text className="text-eyebrow text-muted">{state.variant.color}</Text>
         </View>
       </View>
       {state.viewerOpen ? (

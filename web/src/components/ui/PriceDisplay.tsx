@@ -7,10 +7,12 @@ export type PriceDisplayProps = {
 
 export function PriceDisplay({ price, oldPrice }: PriceDisplayProps) {
   return (
-    <p className="shrink-0 text-right text-[13px] leading-5">
+    <p className="shrink-0 text-right text-price leading-body">
       <span className="font-medium">{formatPrice(price)}</span>
       {oldPrice !== undefined ? (
-        <span className="ml-1.5 text-[12px] text-muted line-through">{formatPrice(oldPrice)}</span>
+        <span className="ml-price-gap text-price-old leading-price-old text-muted line-through">
+          {formatPrice(oldPrice)}
+        </span>
       ) : null}
     </p>
   );

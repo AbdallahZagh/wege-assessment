@@ -38,8 +38,8 @@ Variant, favorite, viewer, and image index live in `useProductCardState` (per ca
 
 ## Styling
 
-- **Web:** Tailwind CSS v4 (`web/src/app/globals.css` `@theme`)
-- **Mobile:** NativeWind v4 + Tailwind CSS v3 (`mobile/tailwind.config.js`), same token names (`bg-canvas`, `text-ink`, `gap-grid`)
+- **Web:** Tailwind CSS v4 — `shared/theme.css` imported in `web/src/app/globals.css` `@theme`
+- **Mobile:** NativeWind + `shared/theme.css` imported in `mobile/global.css`, mapped in `mobile/tailwind.config.js`
 
 ## Libraries
 
@@ -65,7 +65,7 @@ Variant, favorite, viewer, and image index live in `useProductCardState` (per ca
 ## Trade-offs / limitations
 
 - Placeholder studio-color images (not photography). Replace templates under `shared/assets/templates` and re-run `python shared/recolor-products.py`
-- Visual design uses Tailwind theme values in `web/src/app/globals.css` and `mobile/tailwind.config.js`
+- Visual design tokens live in `shared/theme.css` (imported by web and mobile CSS)
 - Web and native UI are duplicated on purpose (different primitives)
 - Live Vercel / EAS URLs are not included until deploy
 

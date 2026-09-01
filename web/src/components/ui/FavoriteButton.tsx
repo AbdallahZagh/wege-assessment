@@ -15,9 +15,9 @@ export function FavoriteButton({ selected, onToggle }: FavoriteButtonProps) {
       }}
       aria-pressed={selected}
       aria-label={selected ? "Remove from favorites" : "Add to favorites"}
-      className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-ink shadow-sm"
+      className="absolute top-favorite right-favorite flex size-btn-favorite items-center justify-center rounded-full bg-surface/90 text-ink shadow-favorite"
     >
-      <IconHeart className="h-4 w-4 text-ink" filled={selected} />
+      <IconHeart className="size-icon-sm text-ink" filled={selected} />
     </button>
   );
 }

@@ -1,25 +1,73 @@
 @import "tailwindcss";
+@import "../../../shared/theme.css";
 
 @theme inline {
-  --color-canvas: #f3efe8;
-  --color-surface: #fffbf7;
-  --color-ink: #1c1917;
-  --color-muted: #8a8279;
-  --color-line: #e4dcd0;
-  --color-sale: #9b3d2a;
-  --color-overlay: rgb(28 25 23 / 0.78);
-  --color-skeleton: #e8e0d4;
-  --color-fallback: #efe8de;
+  --color-canvas: var(--wege-color-canvas);
+  --color-surface: var(--wege-color-surface);
+  --color-ink: var(--wege-color-ink);
+  --color-muted: var(--wege-color-muted);
+  --color-line: var(--wege-color-line);
+  --color-sale: var(--wege-color-sale);
+  --color-overlay: var(--wege-color-overlay);
+  --color-skeleton: var(--wege-color-skeleton);
+  --color-fallback: var(--wege-color-fallback);
   --font-sans: var(--font-inter);
-  --spacing-page: 20px;
-  --spacing-page-lg: 32px;
-  --spacing-grid: 16px;
-  --spacing-meta: 6px;
-  --spacing-swatch: 8px;
+
+  --text-eyebrow: var(--wege-font-size-eyebrow);
+  --text-body: var(--wege-font-size-body);
+  --text-price: var(--wege-font-size-price);
+  --text-price-old: var(--wege-font-size-price-old);
+  --text-indicator: var(--wege-font-size-indicator);
+  --text-title: var(--wege-font-size-title);
+
+  --leading-body: var(--wege-line-height-body);
+  --leading-body-tight: var(--wege-line-height-body-tight);
+  --leading-price-old: var(--wege-line-height-price-old);
+
+  --tracking-eyebrow: var(--wege-letter-spacing-eyebrow);
+
+  --spacing-page: var(--wege-spacing-page);
+  --spacing-page-lg: var(--wege-spacing-page-lg);
+  --spacing-grid: var(--wege-spacing-grid);
+  --spacing-meta: var(--wege-spacing-meta);
+  --spacing-swatch: var(--wege-spacing-swatch);
+  --spacing-card: var(--wege-spacing-card);
+  --spacing-card-gap: var(--wege-spacing-card-gap);
+  --spacing-header-y: var(--wege-spacing-header-y);
+  --spacing-favorite: var(--wege-spacing-favorite);
+  --spacing-viewer-x: var(--wege-spacing-viewer-x);
+  --spacing-viewer-top: var(--wege-spacing-viewer-top);
+  --spacing-viewer-bottom: var(--wege-spacing-viewer-bottom);
+  --spacing-indicator-gap: var(--wege-spacing-indicator-gap);
+  --spacing-price-gap: var(--wege-spacing-price-gap);
+
+  --size-swatch: var(--wege-size-swatch);
+  --size-icon-sm: var(--wege-size-icon-sm);
+  --size-icon-md: var(--wege-size-icon-md);
+  --size-icon-lg: var(--wege-size-icon-lg);
+  --size-icon-xl: var(--wege-size-icon-xl);
+  --size-btn-favorite: var(--wege-size-btn-favorite);
+  --size-btn-close: var(--wege-size-btn-close);
+  --size-dot: var(--wege-size-dot);
+
+  --radius-card: var(--wege-radius-card);
+  --radius-full: var(--wege-radius-full);
+
+  --shadow-favorite: var(--wege-shadow-favorite);
+
+  --max-width-gallery: var(--wege-max-width-gallery);
+  --max-width-viewer: min(
+    100%,
+    calc(var(--wege-viewer-max-height-ratio) * 100vh * var(--wege-aspect-product-w) / var(--wege-aspect-product-h))
+  );
+
+  --aspect-product: var(--wege-aspect-product-w) / var(--wege-aspect-product-h);
+
+  --animate-skeleton: var(--wege-animation-skeleton);
 }
 
 html,
 body {
-  background: var(--color-canvas);
-  color: var(--color-ink);
+  background: var(--wege-color-canvas);
+  color: var(--wege-color-ink);
 }

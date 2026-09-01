@@ -7,16 +7,16 @@ export type ImageIndicatorProps = {
 
 export function ImageIndicator({ total, current }: ImageIndicatorProps) {
   return (
-    <View className="items-center gap-2">
-      <Text className="text-[12px] text-surface">
+    <View className="items-center gap-card-gap">
+      <Text className="text-indicator text-surface">
         {current + 1} / {total}
       </Text>
       {total > 1 ? (
-        <View className="flex-row gap-1.5">
+        <View className="flex-row gap-indicator-gap">
           {Array.from({ length: total }, (_, index) => (
             <View
               key={index}
-              className={`h-1.5 w-1.5 rounded-full ${
+              className={`size-dot rounded-full ${
                 index === current ? "bg-surface" : "bg-surface/40"
               }`}
             />

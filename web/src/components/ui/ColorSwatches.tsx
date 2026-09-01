@@ -22,7 +22,7 @@ export function ColorSwatches({
               aria-label={variant.color}
               aria-pressed={selected}
               onClick={() => onSelect(index)}
-              className={`h-4 w-4 rounded-full border ${
+              className={`size-swatch rounded-full border ${
                 selected
                   ? "border-ink outline outline-1 outline-offset-2 outline-ink"
                   : "border-line"
