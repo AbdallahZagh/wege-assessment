@@ -5,7 +5,7 @@ import { ProductImage } from "../../../components/ui/ProductImage";
 import { ImageViewer } from "../ImageViewer/ImageViewer";
 import { useProductCardState } from "../hooks/useProductCardState";
 import type { Product } from "../../../lib/products";
-import { View, Text } from "react-native";
+import { Text, View } from "react-native";
 
 export type ProductCardProps = {
   product: Product;
@@ -16,8 +16,8 @@ export function ProductCard({ product }: ProductCardProps) {
   const preview = state.variant.images[0];
 
   return (
-    <View className="flex-1 overflow-hidden rounded-card bg-surface">
-      <View className="relative">
+    <View className="flex-1">
+      <View className="relative border border-line bg-surface shadow-favorite">
         <ProductImage
           path={preview}
           alt={`${product.name} in ${state.variant.color}`}
@@ -25,18 +25,25 @@ export function ProductCard({ product }: ProductCardProps) {
         />
         <FavoriteButton selected={state.favorite} onToggle={state.toggleFavorite} />
       </View>
-      <View className="gap-card-gap px-card py-card">
-        <Text className="text-body font-medium leading-body-tight text-ink" numberOfLines={2}>
-          {product.name}
-        </Text>
-        <PriceDisplay price={product.price} oldPrice={product.oldPrice} />
-        <View className="flex-row items-center justify-between">
+      <View className="gap-card-gap pt-card-gap">
+        <View className="flex-row items-start justify-between gap-card">
+          <Text
+            className="min-w-0 flex-1 text-body font-medium leading-body text-ink"
+            numberOfLines={2}
+          >
+            {product.name}
+          </Text>
+          <PriceDisplay price={product.price} oldPrice={product.oldPrice} />
+        </View>
+        <View className="flex-row items-center justify-between gap-card-gap">
           <ColorSwatches
             variants={product.variants}
             selectedIndex={state.selectedVariantIndex}
             onSelect={state.selectVariant}
           />
-          <Text className="text-eyebrow text-muted">{state.variant.color}</Text>
+          <Text className="text-eyebrow tracking-eyebrow text-muted">
+            {state.variant.color}
+          </Text>
         </View>
       </View>
       {state.viewerOpen ? (

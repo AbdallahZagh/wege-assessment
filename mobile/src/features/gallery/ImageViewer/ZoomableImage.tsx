@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import type { ImageSourcePropType } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   runOnJS,
@@ -7,22 +8,29 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import type { ImageSourcePropType } from "react-native";
 import { ImageSkeleton } from "../../../components/ui/ImageSkeleton";
+
+const MIN_SCALE = 1;
+const MAX_SCALE = 4;
 
 export type ZoomableImageProps = {
   source: ImageSourcePropType;
+  resetKey: string;
   onZoomChange?: (scale: number) => void;
 };
 
-export function ZoomableImage({ source, onZoomChange }: ZoomableImageProps) {
+export function ZoomableImage({
+  source,
+  resetKey,
+  onZoomChange,
+}: ZoomableImageProps) {
   const [loading, setLoading] = useState(true);
   const scale = useSharedValue(1);
-  const savedScale = useSharedValue(1);
+  const startScale = useSharedValue(1);
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
-  const savedX = useSharedValue(0);
-  const savedY = useSharedValue(0);
+  const startX = useSharedValue(0);
+  const startY = useSharedValue(0);
   const frameW = useSharedValue(1);
   const frameH = useSharedValue(1);
 
@@ -30,41 +38,62 @@ export function ZoomableImage({ source, onZoomChange }: ZoomableImageProps) {
     onZoomChange?.(value);
   };
 
+  useEffect(() => {
+    scale.value = 1;
+    startScale.value = 1;
+    translateX.value = 0;
+    translateY.value = 0;
+    startX.value = 0;
+    startY.value = 0;
+    setLoading(true);
+    onZoomChange?.(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- reset animated values when image changes
+  }, [resetKey, source]);
+
   const pinch = Gesture.Pinch()
+    .onBegin(() => {
+      startScale.value = scale.value;
+    })
     .onUpdate((event) => {
-      const next = Math.min(4, Math.max(1, savedScale.value * event.scale));
+      const next = Math.min(MAX_SCALE, Math.max(MIN_SCALE, startScale.value * event.scale));
       scale.value = next;
+      runOnJS(reportZoom)(next);
     })
     .onEnd(() => {
-      if (scale.value <= 1.02) {
+      if (scale.value <= 1.05) {
         scale.value = withTiming(1);
-        savedScale.value = 1;
+        startScale.value = 1;
         translateX.value = withTiming(0);
         translateY.value = withTiming(0);
-        savedX.value = 0;
-        savedY.value = 0;
+        startX.value = 0;
+        startY.value = 0;
         runOnJS(reportZoom)(1);
         return;
       }
-      savedScale.value = scale.value;
-      runOnJS(reportZoom)(scale.value);
+      startScale.value = scale.value;
     });
 
   const pan = Gesture.Pan()
+    .minPointers(1)
+    .maxPointers(1)
+    .onBegin(() => {
+      startX.value = translateX.value;
+      startY.value = translateY.value;
+    })
     .onUpdate((event) => {
       if (scale.value <= 1) {
         return;
       }
       const maxX = ((scale.value - 1) * frameW.value) / 2;
       const maxY = ((scale.value - 1) * frameH.value) / 2;
-      const nextX = savedX.value + event.translationX;
-      const nextY = savedY.value + event.translationY;
-      translateX.value = Math.max(-maxX, Math.min(maxX, nextX));
-      translateY.value = Math.max(-maxY, Math.min(maxY, nextY));
-    })
-    .onEnd(() => {
-      savedX.value = translateX.value;
-      savedY.value = translateY.value;
+      translateX.value = Math.max(
+        -maxX,
+        Math.min(maxX, startX.value + event.translationX),
+      );
+      translateY.value = Math.max(
+        -maxY,
+        Math.min(maxY, startY.value + event.translationY),
+      );
     });
 
   const composed = Gesture.Simultaneous(pinch, pan);

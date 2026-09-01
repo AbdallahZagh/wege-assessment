@@ -10,6 +10,7 @@
   --color-sale: var(--wege-color-sale);
   --color-overlay: var(--wege-color-overlay);
   --color-skeleton: var(--wege-color-skeleton);
+  --color-skeleton-shine: var(--wege-color-skeleton-shine);
   --color-fallback: var(--wege-color-fallback);
   --font-sans: var(--font-inter);
 
@@ -54,6 +55,7 @@
   --radius-full: var(--wege-radius-full);
 
   --shadow-favorite: var(--wege-shadow-favorite);
+  --shadow-viewer: var(--wege-shadow-viewer);
 
   --max-width-gallery: var(--wege-max-width-gallery);
   --max-width-viewer: min(
@@ -64,6 +66,7 @@
   --aspect-product: var(--wege-aspect-product-w) / var(--wege-aspect-product-h);
 
   --animate-skeleton: var(--wege-animation-skeleton);
+  --animate-shimmer: var(--wege-animation-shimmer);
 }
 
 html,

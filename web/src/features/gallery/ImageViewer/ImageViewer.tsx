@@ -1,7 +1,7 @@
 "use client";
 
 import { layout } from "@shared/layout";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ColorSwatches } from "@/components/ui/ColorSwatches";
 import { IconClose } from "@/components/ui/IconClose";
 import { ImageIndicator } from "@/features/gallery/ImageViewer/ImageIndicator";
@@ -32,13 +32,21 @@ export function ImageViewer({
   const images = variant.images;
   const current = Math.min(imageIndex, images.length - 1);
   const src = productImageUrl(images[current]);
+  const [scale, setScale] = useState(1);
 
   const startX = useRef<number | null>(null);
+
+  useEffect(() => {
+    setScale(1);
+  }, [variant.color, current]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
+      }
+      if (scale > 1.02) {
+        return;
       }
       if (event.key === "ArrowRight") {
         onIndexChange(Math.min(current + 1, images.length - 1));
@@ -49,7 +57,7 @@ export function ImageViewer({
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [current, images.length, onClose, onIndexChange]);
+  }, [current, images.length, onClose, onIndexChange, scale]);
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-overlay" role="dialog" aria-modal="true">
@@ -57,19 +65,24 @@ export function ImageViewer({
         type="button"
         onClick={onClose}
         aria-label="Close gallery"
-        className="absolute top-favorite right-favorite z-10 flex size-btn-close items-center justify-center text-surface"
+        className="absolute top-favorite right-favorite z-10 flex size-btn-close items-center justify-center rounded-full bg-surface/15 text-surface"
       >
         <IconClose className="size-icon-md" />
       </button>
 
-      <div className="flex flex-1 items-center justify-center px-viewer-x pt-viewer-top pb-viewer-x">
+      <div className="flex flex-1 flex-col items-center justify-center gap-card-gap px-viewer-x pt-viewer-top pb-viewer-x">
+        <p className="text-center text-body font-medium text-surface">{productName}</p>
         <div
-          className="relative w-full max-w-viewer aspect-product overflow-hidden bg-surface"
+          className="relative w-full max-w-viewer overflow-hidden border border-line bg-surface shadow-viewer aspect-product"
           onTouchStart={(event) => {
+            if (scale > 1.02) {
+              return;
+            }
             startX.current = event.changedTouches[0]?.clientX ?? null;
           }}
           onTouchEnd={(event) => {
-            if (startX.current === null) {
+            if (scale > 1.02 || startX.current === null) {
+              startX.current = null;
               return;
             }
             const dx = (event.changedTouches[0]?.clientX ?? 0) - startX.current;
@@ -84,14 +97,15 @@ export function ImageViewer({
           <ZoomableImage
             src={src}
             alt={`${productName} ${variant.color}`}
-            resetKey={variant.color}
+            resetKey={`${variant.color}-${current}`}
+            onZoomChange={setScale}
           />
-          {images.length > 1 ? (
+          {images.length > 1 && scale <= 1.02 ? (
             <>
               <button
                 type="button"
                 aria-label="Previous image"
-                className="absolute top-1/2 left-viewer-x hidden size-btn-favorite -translate-y-1/2 items-center justify-center bg-surface/80 text-ink lg:flex"
+                className="absolute top-1/2 left-viewer-x hidden size-btn-favorite -translate-y-1/2 items-center justify-center rounded-full bg-surface/90 text-ink lg:flex"
                 onClick={() => onIndexChange(Math.max(current - 1, 0))}
               >
                 ‹
@@ -99,7 +113,7 @@ export function ImageViewer({
               <button
                 type="button"
                 aria-label="Next image"
-                className="absolute top-1/2 right-viewer-x hidden size-btn-favorite -translate-y-1/2 items-center justify-center bg-surface/80 text-ink lg:flex"
+                className="absolute top-1/2 right-viewer-x hidden size-btn-favorite -translate-y-1/2 items-center justify-center rounded-full bg-surface/90 text-ink lg:flex"
                 onClick={() => onIndexChange(Math.min(current + 1, images.length - 1))}
               >
                 ›
@@ -114,7 +128,10 @@ export function ImageViewer({
         <ColorSwatches
           variants={variants}
           selectedIndex={selectedVariantIndex}
-          onSelect={onVariantChange}
+          onSelect={(index) => {
+            setScale(1);
+            onVariantChange(index);
+          }}
         />
       </div>
     </div>

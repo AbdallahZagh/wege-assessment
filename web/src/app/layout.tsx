@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Atelier — New arrivals",
+  title: "WEGE Store",
   description: "Product gallery and variant experience",
 };
 

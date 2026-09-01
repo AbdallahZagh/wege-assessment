@@ -23,7 +23,7 @@ export function ColorSwatches({
             accessibilityRole="button"
             accessibilityLabel={variant.color}
             accessibilityState={{ selected }}
-            className={`size-swatch rounded-full ${
+            className={`size-swatch rounded-full border ${
               selected ? "border-2 border-ink" : "border border-line"
             }`}
             style={{ backgroundColor: variant.colorCode }}

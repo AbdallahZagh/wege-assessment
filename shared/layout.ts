@@ -12,3 +12,12 @@ export const layout = {
   headerSafe: 12,
   swipeThreshold: 48,
 } as const;
+
+export function viewerFrameWidth(screenWidth: number, screenHeight: number): number {
+  const horizontalInset = layout.viewerPaddingX * 2;
+  return Math.min(
+    screenWidth - horizontalInset,
+    (screenHeight * layout.viewerMaxHeightRatio * layout.aspectProductW) /
+      layout.aspectProductH,
+  );
+}

@@ -13,6 +13,7 @@ module.exports = {
         sale: "var(--wege-color-sale)",
         overlay: "var(--wege-color-overlay)",
         skeleton: "var(--wege-color-skeleton)",
+        "skeleton-shine": "var(--wege-color-skeleton-shine)",
         fallback: "var(--wege-color-fallback)",
       },
       fontSize: {
@@ -83,15 +84,21 @@ module.exports = {
       },
       boxShadow: {
         favorite: "var(--wege-shadow-favorite)",
+        viewer: "var(--wege-shadow-viewer)",
       },
       keyframes: {
         skeleton: {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.45" },
         },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
       },
       animation: {
         skeleton: "skeleton 1.5s ease-in-out infinite",
+        shimmer: "shimmer 1.4s ease-in-out infinite",
       },
     },
   },

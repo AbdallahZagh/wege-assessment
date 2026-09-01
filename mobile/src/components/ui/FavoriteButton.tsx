@@ -13,7 +13,7 @@ export function FavoriteButton({ selected, onToggle }: FavoriteButtonProps) {
       accessibilityRole="button"
       accessibilityState={{ selected }}
       accessibilityLabel={selected ? "Remove from favorites" : "Add to favorites"}
-      className="absolute right-favorite top-favorite size-btn-favorite items-center justify-center rounded-full bg-surface/90"
+      className="absolute right-favorite top-favorite size-btn-favorite items-center justify-center rounded-full bg-surface/90 shadow-favorite"
     >
       <IconHeart filled={selected} className="text-ink" />
     </Pressable>

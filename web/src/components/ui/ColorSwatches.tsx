@@ -24,8 +24,8 @@ export function ColorSwatches({
               onClick={() => onSelect(index)}
               className={`size-swatch rounded-full border ${
                 selected
-                  ? "border-ink outline outline-1 outline-offset-2 outline-ink"
-                  : "border-line"
+                  ? "border-2 border-ink ring-2 ring-ink ring-offset-2 ring-offset-canvas"
+                  : "border border-line"
               }`}
               style={{ backgroundColor: variant.colorCode }}
             />

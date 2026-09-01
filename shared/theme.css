@@ -8,6 +8,7 @@
   --wege-color-sale: #9b3d2a;
   --wege-color-overlay: rgb(28 25 23 / 0.78);
   --wege-color-skeleton: #e8e0d4;
+  --wege-color-skeleton-shine: rgb(255 251 247 / 0.7);
   --wege-color-fallback: #efe8de;
 
   /* Typography */
@@ -30,7 +31,7 @@
   --wege-spacing-swatch: 8px;
   --wege-spacing-card: 12px;
   --wege-spacing-card-gap: 8px;
-  --wege-spacing-header-y: 20px;
+  --wege-spacing-header-y: 10px;
   --wege-spacing-header-safe: 12px;
   --wege-spacing-favorite: 12px;
   --wege-spacing-viewer-x: 16px;
@@ -61,9 +62,21 @@
 
   /* Shadows */
   --wege-shadow-favorite: 0 1px 2px rgb(28 25 23 / 0.08);
+  --wege-shadow-viewer: 0 20px 40px rgb(28 25 23 / 0.28);
 
   /* Animation */
   --wege-animation-skeleton: wege-skeleton-pulse 1.5s ease-in-out infinite;
+  --wege-animation-shimmer: wege-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes wege-skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes wege-skeleton-pulse {

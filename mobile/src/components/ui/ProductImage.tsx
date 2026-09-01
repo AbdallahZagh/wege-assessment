@@ -1,6 +1,7 @@
 import { Image } from "expo-image";
 import { useEffect, useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
+import { IconBrokenImage } from "./IconBrokenImage";
 import { ImageSkeleton } from "./ImageSkeleton";
 import { productImageSource } from "../../lib/images";
 
@@ -28,7 +29,7 @@ export function ProductImage({ path, alt, onOpen }: ProductImageProps) {
     >
       {error ? (
         <View className="h-full w-full items-center justify-center bg-fallback">
-          <Text className="text-indicator text-muted">Image unavailable</Text>
+          <IconBrokenImage className="text-muted" />
         </View>
       ) : (
         <View className="h-full w-full">

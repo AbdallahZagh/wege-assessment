@@ -8,8 +8,8 @@ export type PriceDisplayProps = {
 
 export function PriceDisplay({ price, oldPrice }: PriceDisplayProps) {
   return (
-    <View className="flex-row items-baseline gap-price-gap">
-      <Text className="text-body font-medium leading-body-tight text-ink">
+    <View className="shrink flex-row items-baseline justify-end gap-price-gap">
+      <Text className="text-price font-medium leading-body text-ink">
         {formatPrice(price)}
       </Text>
       {oldPrice !== undefined ? (
