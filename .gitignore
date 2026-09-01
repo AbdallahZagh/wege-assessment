@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.expo/
+dist/
+out/
+*.log
+.DS_Store
+.vercel
+.env
+.env.*
+web/.next/
+mobile/.expo/
+*.tsbuildinfo
+.metro-health-check*

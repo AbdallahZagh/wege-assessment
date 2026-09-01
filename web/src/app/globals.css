@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-canvas: #f3efe8;
+  --color-surface: #fffbf7;
+  --color-ink: #1c1917;
+  --color-muted: #8a8279;
+  --color-line: #e4dcd0;
+  --color-sale: #9b3d2a;
+  --color-overlay: rgb(28 25 23 / 0.78);
+  --color-skeleton: #e8e0d4;
+  --color-fallback: #efe8de;
+  --font-sans: var(--font-inter);
+  --spacing-page: 20px;
+  --spacing-page-lg: 32px;
+  --spacing-grid: 16px;
+  --spacing-meta: 6px;
+  --spacing-swatch: 8px;
+}
+
+html,
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+}
