@@ -16,8 +16,8 @@ export function ProductCard({ product }: ProductCardProps) {
   const preview = state.variant.images[0];
 
   return (
-    <View className="flex-1">
-      <View className="relative border border-line bg-surface shadow-favorite">
+    <View className="overflow-hidden rounded-card bg-surface shadow-card">
+      <View className="relative">
         <ProductImage
           path={preview}
           alt={`${product.name} in ${state.variant.color}`}
@@ -25,27 +25,27 @@ export function ProductCard({ product }: ProductCardProps) {
         />
         <FavoriteButton selected={state.favorite} onToggle={state.toggleFavorite} />
       </View>
-      <View className="gap-card-gap pt-card-gap">
-        <View className="flex-row items-start justify-between gap-card">
+
+      <View className="gap-2 px-card py-card">
+        <View className="flex-row items-start justify-between gap-2">
           <Text
-            className="min-w-0 flex-1 text-body font-medium leading-body text-ink"
+            className="min-w-0 flex-1 text-body font-medium leading-body-tight text-ink"
             numberOfLines={2}
           >
             {product.name}
           </Text>
           <PriceDisplay price={product.price} oldPrice={product.oldPrice} />
         </View>
-        <View className="flex-row items-center justify-between gap-card-gap">
-          <ColorSwatches
-            variants={product.variants}
-            selectedIndex={state.selectedVariantIndex}
-            onSelect={state.selectVariant}
-          />
-          <Text className="text-eyebrow tracking-eyebrow text-muted">
-            {state.variant.color}
-          </Text>
-        </View>
+        <ColorSwatches
+          variants={product.variants}
+          selectedIndex={state.selectedVariantIndex}
+          onSelect={state.selectVariant}
+        />
+        <Text className="text-eyebrow tracking-eyebrow text-muted">
+          {state.variant.color}
+        </Text>
       </View>
+
       {state.viewerOpen ? (
         <ImageViewer
           productName={product.name}

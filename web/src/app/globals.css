@@ -34,6 +34,10 @@
   --spacing-swatch: var(--wege-spacing-swatch);
   --spacing-card: var(--wege-spacing-card);
   --spacing-card-gap: var(--wege-spacing-card-gap);
+  --spacing-card-meta-h: var(--wege-card-meta-h);
+  --spacing-card-name-h: var(--wege-card-name-h);
+  --spacing-card-swatch-h: var(--wege-card-swatch-h);
+  --spacing-card-color-h: var(--wege-card-color-h);
   --spacing-header-y: var(--wege-spacing-header-y);
   --spacing-favorite: var(--wege-spacing-favorite);
   --spacing-viewer-x: var(--wege-spacing-viewer-x);
@@ -41,12 +45,16 @@
   --spacing-viewer-bottom: var(--wege-spacing-viewer-bottom);
   --spacing-indicator-gap: var(--wege-spacing-indicator-gap);
   --spacing-price-gap: var(--wege-spacing-price-gap);
+  --spacing-grid-row: var(--wege-spacing-grid-row);
+  --spacing-grid-bottom: var(--wege-spacing-grid-bottom);
 
   --size-swatch: var(--wege-size-swatch);
+  --size-swatch-viewer: var(--wege-size-swatch-viewer);
   --size-icon-sm: var(--wege-size-icon-sm);
   --size-icon-md: var(--wege-size-icon-md);
   --size-icon-lg: var(--wege-size-icon-lg);
   --size-icon-xl: var(--wege-size-icon-xl);
+  --size-icon-close: var(--wege-size-icon-close);
   --size-btn-favorite: var(--wege-size-btn-favorite);
   --size-btn-close: var(--wege-size-btn-close);
   --size-dot: var(--wege-size-dot);
@@ -55,18 +63,27 @@
   --radius-full: var(--wege-radius-full);
 
   --shadow-favorite: var(--wege-shadow-favorite);
+  --shadow-card: var(--wege-shadow-card);
   --shadow-viewer: var(--wege-shadow-viewer);
 
   --max-width-gallery: var(--wege-max-width-gallery);
+  --max-height-viewer: calc(100dvh - var(--wege-viewer-chrome));
   --max-width-viewer: min(
     100%,
-    calc(var(--wege-viewer-max-height-ratio) * 100vh * var(--wege-aspect-product-w) / var(--wege-aspect-product-h))
+    calc(var(--max-height-viewer) * var(--wege-aspect-product-w) / var(--wege-aspect-product-h))
   );
 
   --aspect-product: var(--wege-aspect-product-w) / var(--wege-aspect-product-h);
 
   --animate-skeleton: var(--wege-animation-skeleton);
   --animate-shimmer: var(--wege-animation-shimmer);
+}
+
+.viewer-frame {
+  aspect-ratio: var(--aspect-product);
+  width: min(100%, var(--max-width-viewer));
+  max-height: var(--max-height-viewer);
+  height: auto;
 }
 
 html,

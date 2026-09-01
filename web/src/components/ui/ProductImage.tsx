@@ -25,7 +25,7 @@ export function ProductImage({ src, alt, onOpen, priority }: ProductImageProps) 
     <button
       type="button"
       onClick={onOpen}
-      className="relative block w-full overflow-hidden bg-skeleton aspect-product"
+      className="relative block w-full overflow-hidden bg-surface aspect-product"
       aria-label={`View images of ${alt}`}
     >
       {error ? (

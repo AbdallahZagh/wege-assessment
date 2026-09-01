@@ -1,3 +1,4 @@
+import { layout } from "@shared/layout";
 import { Image } from "expo-image";
 import { useEffect, useState } from "react";
 import { Pressable, View } from "react-native";
@@ -25,7 +26,8 @@ export function ProductImage({ path, alt, onOpen }: ProductImageProps) {
       onPress={onOpen}
       accessibilityRole="button"
       accessibilityLabel={`View images of ${alt}`}
-      className="w-full overflow-hidden bg-skeleton aspect-product"
+      className="w-full overflow-hidden bg-surface"
+      style={{ aspectRatio: layout.aspectProduct }}
     >
       {error ? (
         <View className="h-full w-full items-center justify-center bg-fallback">

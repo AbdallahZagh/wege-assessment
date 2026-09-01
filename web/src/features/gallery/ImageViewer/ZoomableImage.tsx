@@ -56,7 +56,7 @@ export function ZoomableImage({
                 alt={alt}
                 fill
                 sizes="(min-width: 1024px) 40vw, 90vw"
-                className="object-cover object-center"
+                className="object-contain object-center"
                 onLoad={() => setLoading(false)}
                 onError={() => {
                   setLoading(false);

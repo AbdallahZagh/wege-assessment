@@ -19,8 +19,8 @@ export function ProductCard({ product, priority }: ProductCardProps) {
   const preview = state.variant.images[0];
 
   return (
-    <article>
-      <div className="relative border border-line bg-surface shadow-favorite">
+    <article className="flex h-full flex-col overflow-hidden rounded-card bg-surface shadow-card">
+      <div className="relative shrink-0">
         <ProductImage
           src={productImageUrl(preview)}
           alt={`${product.name} in ${state.variant.color}`}
@@ -29,22 +29,26 @@ export function ProductCard({ product, priority }: ProductCardProps) {
         />
         <FavoriteButton selected={state.favorite} onToggle={state.toggleFavorite} />
       </div>
-      <div className="flex flex-col gap-card-gap pt-card-gap">
-        <div className="flex items-start justify-between gap-card">
-          <h2 className="min-w-0 flex-1 text-body font-medium leading-body text-ink">
+
+      <div className="flex h-card-meta-h shrink-0 flex-col justify-between gap-2 px-card py-card">
+        <div className="flex h-card-name-h items-start justify-between gap-2">
+          <h2 className="line-clamp-2 min-w-0 flex-1 text-body font-medium leading-body-tight text-ink">
             {product.name}
           </h2>
           <PriceDisplay price={product.price} oldPrice={product.oldPrice} />
         </div>
-        <div className="flex items-center justify-between gap-card-gap">
+        <div className="flex h-card-swatch-h items-center">
           <ColorSwatches
             variants={product.variants}
             selectedIndex={state.selectedVariantIndex}
             onSelect={state.selectVariant}
           />
-          <p className="text-eyebrow tracking-eyebrow text-muted">{state.variant.color}</p>
         </div>
+        <p className="h-card-color-h truncate text-eyebrow leading-none tracking-eyebrow text-muted">
+          {state.variant.color}
+        </p>
       </div>
+
       {state.viewerOpen ? (
         <ImageViewer
           productName={product.name}

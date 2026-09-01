@@ -8,8 +8,7 @@ export function GalleryHeader() {
       </h1>
       <p className="mt-meta text-eyebrow tracking-eyebrow text-muted">
         {galleryCopy.pageLabel}
-      </p>
-    </header>
+      </p>   </header>
   );
 }
  

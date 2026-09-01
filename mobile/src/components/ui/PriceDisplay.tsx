@@ -8,7 +8,7 @@ export type PriceDisplayProps = {
 
 export function PriceDisplay({ price, oldPrice }: PriceDisplayProps) {
   return (
-    <View className="shrink flex-row items-baseline justify-end gap-price-gap">
+    <View className="shrink-0 flex-row flex-wrap items-baseline justify-end gap-price-gap">
       <Text className="text-price font-medium leading-body text-ink">
         {formatPrice(price)}
       </Text>
